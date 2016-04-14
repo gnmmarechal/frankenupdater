@@ -10,8 +10,7 @@
 
 
 
---Primary checks (extremely important)
-function fsystemcheck() --Checks firmware version (major, minor, rev) and system region (USA, EUR, JPN)
+function systemcheck() --Checks firmware version (major, minor, rev) and system region (USA, EUR, JPN)
 	major, minor, rev = System.getFirmware()
 	regint = System.getRegion()
 	if regint == 1 then
@@ -24,6 +23,12 @@ function fsystemcheck() --Checks firmware version (major, minor, rev) and system
 		end	
 	end
 end
+
+
+
+
+--Checking stuff before doing anything to the console
+systemcheck()
 
 
 while true do
