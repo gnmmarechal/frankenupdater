@@ -11,7 +11,19 @@
 
 
 --Primary checks (extremely important)
-
+function fsystemcheck() --Checks firmware version (major, minor, rev) and system region (USA, EUR, JPN)
+	major, minor, rev = System.getFirmware()
+	regint = System.getRegion()
+	if regint == 1 then
+		region = "USA"
+	else
+		if regint == 2 then
+			region = "EUR"
+		else
+			region = "JPN"
+		end	
+	end
+end
 
 
 while true do
