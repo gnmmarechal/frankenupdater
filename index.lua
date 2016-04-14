@@ -51,7 +51,11 @@ function checkquit()
 		System.exit()
 	end
 end
-
+function waitchange(string nextscr)
+	if Controls.check(pad,KEY_B) and not Controls.check(oldpad,KEY_B) then
+		scr = nextscr
+	end
+end
 
 
 
