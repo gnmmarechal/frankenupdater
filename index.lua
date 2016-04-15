@@ -7,6 +7,8 @@
 --
 -- Now, enjoy this. ~gnmmarechal/gnmpolicemata
 
+scriptver = "0.1"
+
 white = Color.new(255,255,255)
 green = Color.new(0,240,32)
 red = Color.new(255,0,0)
@@ -165,6 +167,14 @@ setcia()
 
 --UI Screens
 function errorscreen() --scr = 0 -- Error screen, displays error code in case of an error
+	debugPrint(0,0,"FrankenUpdater v."..scriptver, white, TOP_SCREEN)
+	debugPrint(0,20,"===============", red, TOP_SCREEN)
+	debugPrint(0,40,"An error has ocurred.", white, TOP_SCREEN)
+	debugPrint(0,60,"Please refer to the documentation.", white, TOP_SCREEN)
+	debugPrint(0,80,"Error code: "..err, red, TOP_SCREEN)
+	checkquit()
+end
+
 function disclaimer() --scr = 1 -- Disclaimer, first screen
 	debugPrint(0,0,"DISCLAIMER:", red, TOP_SCREEN)
 	debugPrint(0,40,"It's your console, and your choice!", white, TOP_SCREEN)
