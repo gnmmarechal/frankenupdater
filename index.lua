@@ -162,7 +162,7 @@ function installcia() --installs the CIA files to NAND (doesn't do anything if r
 			System.installCIA(updatedir..friends..".cia", NAND)
 			System.installCIA(updatedir..eshop..".cia", NAND)
 			System.installCIA(updatedir..mint..".cia", NAND)
-			installed == 1
+			installed = 1
 		end
 		
 	else
@@ -213,7 +213,7 @@ end
 function startinstall() --scr = 2 --Second screen, starts the installation of the CIA files
 	Screen.debugPrint(0,0,"FrankenUpdater v."..scriptver.." by gnmmarechal", white, TOP_SCREEN)
 	Screen.debugPrint(0,20,"===============", red, TOP_SCREEN)
-	Screen.debugPrint(0,40,"Installation started. Please wait..., white, TOP_SCREEN)
+	Screen.debugPrint(0,40,"Installation started. Please wait..."", white, TOP_SCREEN)
 	Screen.debugPrint(0,60,"DO NOT TURN THE POWER OFF!!!", red, TOP_SCREEN)
 	installcia()
 	Screen.debugPrint(0,80,"Done! Press B to quit!", white, TOP_SCREEN) 
