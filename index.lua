@@ -12,7 +12,7 @@ green = Color.new(0,240,32)
 red = Color.new(255,0,0)
 System.currentDirectory("/")
 root = System.currentDirectory()
-updatedir = "cia"
+updatedir = root.."cia"
 
 --Important functions
 
@@ -62,29 +62,48 @@ end
 
 --CIA Checks
 function regionsetcia() --checks if the correct CIAs are available on the SD Card. As of now, it doesn't check for file corruption
-if region == "USA" then
-	nver = "000400DB00016302" -- latest ver 512 (10.7)
-	friends = "0004013000003202" -- latest ver 10240 (10.7)
-	eshop = "0004001000021900" -- latest ver 21506 (10.7)
-	mint = "000400300000CE02" -- latest ver 16384 (10.7)
-end
-if region == "EUR" then
-	nver = "000400DB00016102" -- latest ver 512 (10.7)
-	friends = "0004013000003202" -- latest ver 10240 (10.7)
-	eshop = "0004001000022900" -- latest ver 21505 (10.7)
-	mint = "000400300000D602" -- latest ver 16384 (10.7)
-end
-if region == "JPN" then
-	nver = "000400DB00016202" -- latest ver 512 (10.7)
-	friends = "0004013000003202" -- latest ver 10240 (10.7)
-	eshop = "0004001000020900" -- latest ver 21504 (10.7)
-	mint = "000400300000C602" -- latest ver 16384 (10.7)
+	if region == "USA" then
+		nver = "000400DB00016302" -- latest ver 512 (10.7)
+		friends = "0004013000003202" -- latest ver 10240 (10.7)
+		eshop = "0004001000021900" -- latest ver 21506 (10.7)
+		mint = "000400300000CE02" -- latest ver 16384 (10.7)
+	end
+	if region == "EUR" then
+		nver = "000400DB00016102" -- latest ver 512 (10.7)
+		friends = "0004013000003202" -- latest ver 10240 (10.7)
+		eshop = "0004001000022900" -- latest ver 21505 (10.7)
+		mint = "000400300000D602" -- latest ver 16384 (10.7)
+	end
+	if region == "JPN" then
+		nver = "000400DB00016202" -- latest ver 512 (10.7)
+		friends = "0004013000003202" -- latest ver 10240 (10.7)
+		eshop = "0004001000020900" -- latest ver 21504 (10.7)
+		mint = "000400300000C602" -- latest ver 16384 (10.7)
+	end
+
 end
 
+function doesciaexist() --checks if the CIA files are in the correct directory and/or exist
+	if not System.doesFileExist(updatedir..nver..".cia") then
+		return 1
+	end
+	if not System.doesFileExist(updatedir..friends..".cia") then
+		return 1
+	end
+	if not System.doesFileExist(updatedir..eshop..".cia") then
+		return 1
+	end
+	if not System.doesFileExist(updatedir..mint..".cia") then
+		return 1
+	else
+		return 0
+	end
 end
 
 --Checking stuff before doing anything to the console
 systemcheck()
+
+
 
 
 while true do
