@@ -157,7 +157,7 @@ function installcia() --installs the CIA files to NAND (doesn't do anything if r
 	checkciaexist = doesciaexist()
 	if checkciaexist == 1 then
 		Screen.debugPrint(0,0,"Installing CIA files...", white, TOP_SCREEN)
-		if rel == 1 and installed == 0
+		if rel == 1 and installed == 0 then
 			System.installCIA(updatedir..nver..".cia", NAND)
 			System.installCIA(updatedir..friends..".cia", NAND)
 			System.installCIA(updatedir..eshop..".cia", NAND)
