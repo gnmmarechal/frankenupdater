@@ -13,6 +13,7 @@ red = Color.new(255,0,0)
 System.currentDirectory("/")
 root = System.currentDirectory()
 updatedir = root.."cia"
+scr = 1
 
 --Important functions
 
@@ -53,7 +54,7 @@ function checkquit()
 		System.exit()
 	end
 end
-function waitchange(string nextscr)
+function waitchange(nextscr)
 	if Controls.check(pad,KEY_A) and not Controls.check(oldpad,KEY_A) then
 		scr = nextscr
 	end
@@ -85,21 +86,35 @@ end
 
 function doesciaexist() --checks if the CIA files are in the correct directory and/or exist
 	if not System.doesFileExist(updatedir..nver..".cia") then
-		return 1
+		return 0
 	end
 	if not System.doesFileExist(updatedir..friends..".cia") then
-		return 1
+		return 0
 	end
 	if not System.doesFileExist(updatedir..eshop..".cia") then
-		return 1
+		return 0
 	end
 	if not System.doesFileExist(updatedir..mint..".cia") then
-		return 1
-	else
 		return 0
+	else
+		return 1
 	end
 end
 
+function installcia() --installs the CIA files to NAND (doesn't do anything if rel = 0)
+	if doesciaexist() then
+		debugPrint(0,0,"Installing CIA files...", white, TOP_SCREEN)
+		if rel == 1
+			System.installCIA(updatedir..nver..".cia")
+			System.installCIA(updatedir..friends..".cia")
+			System.installCIA(updatedir..eshop..".cia")
+			System.installCIA(updatedir..mint..".cia")
+		end
+	else
+		err = 0 --Error 0 is missing files
+		scr = 0 -- error screen
+	end
+end
 --Checking stuff before doing anything to the console
 systemcheck()
 
