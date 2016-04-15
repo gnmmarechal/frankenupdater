@@ -33,7 +33,7 @@ installed = 0 --Sets whether the CIA files have already been installed or not
 
 --Important functions
 
-rel = 1 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
+rel = 0 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
 
 function systemcheck() --Checks firmware version (major, minor, rev) , system region (USA, EUR, JPN) and model (0 = OLD, 1 = NEW)
 	major, minor, rev = System.getFirmware() --gets firmware version
