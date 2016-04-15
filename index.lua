@@ -47,6 +47,7 @@ function displaysystem() -- Displays system information
 	debugPrint(0,0,"MAKE SURE THIS IS CORRECT!", red, BOTTOM_SCREEN)
 	debugPrint(0,20,"Abort if wrong! (XL doesn't matter)", red, BOTTOM_SCREEN)
 	debugPrint(0,40,"Model:"..modelstring, white, BOTTOM_SCREEN)
+	debugPrint(0,60,"FW:"..major.."."..minor.."."..rev, white, BOTTOM_SCREEN)
 end
 
 --other functions
@@ -147,6 +148,7 @@ function installcia() --installs the CIA files to NAND (doesn't do anything if r
 			System.installCIA(updatedir..mint..".cia", NAND)
 			installed == 1
 		end
+		
 	else
 		err = 0 --Error 0 is missing files
 		scr = 0 -- error screen
@@ -159,16 +161,26 @@ oldpad = Controls.read()
 
 --Checking stuff before doing anything to the console
 systemcheck()
-regionsetcia()
+setcia()
 
-
+--UI Screens
+function disclaimer() --scr = 1 -- Disclaimer, first screen
+	debugPrint(0,0,"DISCLAIMER:", red, TOP_SCREEN)
+	debugPrint(0,40,"It's your console, and your choice!", white, TOP_SCREEN)
+	debugPrint(0,60,"Don't blame me if anything happens!", white, TOP_SCREEN)
+	debugPrint(0,80,"USE THE CORRECT FILES!", red, TOP_SCREEN)
+	debugPrint(0,100,"Press A to install CIAs.", white, TOP_SCREEN)
+	waitchange(2)
+	checkquit()
+end
 
 
 while true do
 	clear()
 	pad = Controls.read()
+	displaysystem()
 	if scr == 1
-		displaysystem()
+
 	end
 	
 	
