@@ -14,6 +14,7 @@ System.currentDirectory("/")
 root = System.currentDirectory()
 updatedir = root.."cia"
 scr = 1
+installed = 0
 
 --Important functions
 
@@ -59,6 +60,11 @@ function waitchange(nextscr)
 		scr = nextscr
 	end
 end
+function clear()
+	Screen.refresh()
+	Screen.clear(TOP_SCREEN)
+	Screen.clear(BOTTOM_SCREEN)
+end 
 
 
 --CIA Checks
@@ -104,23 +110,39 @@ end
 function installcia() --installs the CIA files to NAND (doesn't do anything if rel = 0)
 	if doesciaexist() then
 		debugPrint(0,0,"Installing CIA files...", white, TOP_SCREEN)
-		if rel == 1
+		if rel == 1 and installed == 0
 			System.installCIA(updatedir..nver..".cia")
 			System.installCIA(updatedir..friends..".cia")
 			System.installCIA(updatedir..eshop..".cia")
 			System.installCIA(updatedir..mint..".cia")
+			installed == 1
 		end
 	else
 		err = 0 --Error 0 is missing files
 		scr = 0 -- error screen
 	end
 end
+
+
+
+oldpad = Controls.read()
+
 --Checking stuff before doing anything to the console
 systemcheck()
+regionsetcia()
 
 
 
 
 while true do
-
+	clear()
+	pad = Controls.read()
+	if scr == 1
+		displaysystem()
+	end
+	
+	
+	Screen.flip()
+	Screen.waitVblankStart()
+	oldpad = pad
 end
