@@ -68,7 +68,7 @@ end
 
 
 --CIA Checks
-function regionsetcia() --checks if the correct CIAs are available on the SD Card. As of now, it doesn't check for file corruption
+function oldregionsetcia() --checks if the correct CIAs are available on the SD Card. As of now, it doesn't check for file corruption
 	if region == "USA" then
 		nver = "000400DB00016302" -- latest ver 512 (10.7)
 		friends = "0004013000003202" -- latest ver 10240 (10.7)
@@ -88,6 +88,36 @@ function regionsetcia() --checks if the correct CIAs are available on the SD Car
 		mint = "000400300000C602" -- latest ver 16384 (10.7)
 	end
 
+end
+
+function newregionsetcia() -- Same as oldregionsetcia(), for the new3DS
+	if region == "USA" then
+		nver = ""
+		friends = ""
+		eshop = ""
+		mint = ""
+	end
+	if region == "EUR" then
+		nver = ""
+		friends = ""
+		eshop = ""
+		mint = ""
+	end
+	if region == "JPN" then
+		nver = ""
+		friends = ""
+		eshop = ""
+		mint = ""
+	end
+end
+
+function setcia() -- Uses the variables to decide whether to use newregionsetcia or oldregionsetcia
+	if model == 0 then --o3DS/2DS
+		oldregionsetcia()
+	end
+	if model == 1 then --n3DS
+		newregionsetcia()
+	end
 end
 
 function doesciaexist() --checks if the CIA files are in the correct directory and/or exist
@@ -111,10 +141,10 @@ function installcia() --installs the CIA files to NAND (doesn't do anything if r
 	if doesciaexist() then
 		debugPrint(0,0,"Installing CIA files...", white, TOP_SCREEN)
 		if rel == 1 and installed == 0
-			System.installCIA(updatedir..nver..".cia")
-			System.installCIA(updatedir..friends..".cia")
-			System.installCIA(updatedir..eshop..".cia")
-			System.installCIA(updatedir..mint..".cia")
+			System.installCIA(updatedir..nver..".cia", NAND)
+			System.installCIA(updatedir..friends..".cia", NAND)
+			System.installCIA(updatedir..eshop..".cia", NAND)
+			System.installCIA(updatedir..mint..".cia", NAND)
 			installed == 1
 		end
 	else
