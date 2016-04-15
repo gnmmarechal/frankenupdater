@@ -178,6 +178,7 @@ function errorscreen() --scr = 0 -- Error screen, displays error code in case of
 	debugPrint(0,40,"An error has ocurred.", white, TOP_SCREEN)
 	debugPrint(0,60,"Please refer to the documentation.", white, TOP_SCREEN)
 	debugPrint(0,80,"Error code: "..err, red, TOP_SCREEN)
+	debugPrint(0,100,"Press B to quit.", white, TOP_SCREEN)
 	checkquit()
 end
 
@@ -191,6 +192,16 @@ function disclaimer() --scr = 1 -- Disclaimer, first screen
 	checkquit()
 end
 
+function startinstall() --scr = 2 --Second screen, starts the installation of the CIA files
+	debugPrint(0,0,"FrankenUpdater v."..scriptver.." by gnmmarechal", white, TOP_SCREEN)
+	debugPrint(0,20,"===============", red, TOP_SCREEN)
+	debugPrint(0,40,"Installation started. Please wait..., white, TOP_SCREEN)
+	debugPrint(0,60,"DO NOT TURN THE POWER OFF!!!", red, TOP_SCREEN)
+	installcia()
+	debugPrint(0,80,"Done! Press B to quit!", white, TOP_SCREEN)
+	checkquit() 
+end
+
 
 while true do
 	clear()
@@ -202,6 +213,9 @@ while true do
 	if scr == 1 then
 		disclaimer()
 	end
+	if scr == 2 then
+		startinstall()
+	end 
 	
 	
 	
