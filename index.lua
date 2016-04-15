@@ -7,16 +7,21 @@
 --
 -- Now, enjoy this. ~gnmmarechal/gnmpolicemata
 
+
+--Indicates the version of FrankenUpdater
 scriptver = "0.1"
 
+--These lines set the colours for the text in RGB
 white = Color.new(255,255,255)
 green = Color.new(0,240,32)
 red = Color.new(255,0,0)
-System.currentDirectory("/")
-root = System.currentDirectory()
-updatedir = root.."cia"
-scr = 1
-installed = 0
+
+
+System.currentDirectory("/") -- Sets the current directory
+root = System.currentDirectory() --Defines the directory "root" as the root of the SDMC
+updatedir = root.."cia" --Defines the directory containing the CIA update files
+scr = 1 --Defines the starting screen
+installed = 0 --Sets whether the CIA files have already been installed or not
 
 --Important functions
 
@@ -24,23 +29,23 @@ rel = 0 --1 means it will install the CIAs, 0 is merely a test for the interface
 
 function systemcheck() --Checks firmware version (major, minor, rev) , system region (USA, EUR, JPN) and model (0 = OLD, 1 = NEW)
 	major, minor, rev = System.getFirmware() --gets firmware version
-	regint = System.getRegion() --gets region
-	if regint == 1 then
-		region = "USA"
+	regint = System.getRegion() --gets region number
+	if regint == 1 then --checks if the region is 1 (US)
+		region = "USA" --Sets region string as USA
 	else
-		if regint == 2 then
-			region = "EUR"
+		if regint == 2 then --checks if the region is 2 (EUR)
+			region = "EUR" --Sets region string as EUR
 		else
-			region = "JPN"
+			region = "JPN" --If it's not EUR or US, defines it as JPN --- This includes any console that isn't EUR/US, could go wrong with KOR/whatever that isn't EUR/US/JPN!
 		end	
 	end
-	modeln = System.getModel() --gets model
-	if modeln == 0 or model == 1 or model == 3 then
+	modeln = System.getModel() --gets model number
+	if modeln == 0 or model == 1 or model == 3 then --If the system is a 2DS, 3DS or 3DS XL, defines the model as '0' and the correct string.
 		model = 0
 		modelstring = "Old 3DS/2DS"
-	else
+	else --If the system is not an old3DS system, defines it as '1', aka New 3DS/New 3DS XL
 		model = 1
-		modelstring = "New 3DS"
+		modelstring = "New 3DS" 
 	end
 		
 end
@@ -141,7 +146,8 @@ function doesciaexist() --checks if the CIA files are in the correct directory a
 end
 
 function installcia() --installs the CIA files to NAND (doesn't do anything if rel = 0)
-	if doesciaexist() then
+	checkciaexist = doesciaexist()
+	if checkciaexist == 1 then
 		debugPrint(0,0,"Installing CIA files...", white, TOP_SCREEN)
 		if rel == 1 and installed == 0
 			System.installCIA(updatedir..nver..".cia", NAND)
