@@ -10,7 +10,9 @@
 white = Color.new(255,255,255)
 green = Color.new(0,240,32)
 red = Color.new(255,0,0)
-
+System.currentDirectory("/")
+root = System.currentDirectory()
+updatedir = "cia"
 
 --Important functions
 
@@ -42,7 +44,7 @@ end
 function displaysystem() -- Displays system information
 	debugPrint(0,0,"MAKE SURE THIS IS CORRECT!", red, BOTTOM_SCREEN)
 	debugPrint(0,20,"Abort if wrong! (XL doesn't matter)", red, BOTTOM_SCREEN)
-	debugPrint(0,20,"Model:"..modelstring, white, BOTTOM_SCREEN)
+	debugPrint(0,40,"Model:"..modelstring, white, BOTTOM_SCREEN)
 end
 
 --other functions
@@ -52,12 +54,34 @@ function checkquit()
 	end
 end
 function waitchange(string nextscr)
-	if Controls.check(pad,KEY_B) and not Controls.check(oldpad,KEY_B) then
+	if Controls.check(pad,KEY_A) and not Controls.check(oldpad,KEY_A) then
 		scr = nextscr
 	end
 end
 
 
+--CIA Checks
+function regionsetcia() --checks if the correct CIAs are available on the SD Card. As of now, it doesn't check for file corruption
+if region == "USA" then
+	nver = "000400DB00016302" -- latest ver 512 (10.7)
+	friends = "0004013000003202" -- latest ver 10240 (10.7)
+	eshop = "0004001000021900" -- latest ver 21506 (10.7)
+	mint = "000400300000CE02" -- latest ver 16384 (10.7)
+end
+if region == "EUR" then
+	nver = "000400DB00016102" -- latest ver 512 (10.7)
+	friends = "0004013000003202" -- latest ver 10240 (10.7)
+	eshop = "0004001000022900" -- latest ver 21505 (10.7)
+	mint = "000400300000D602" -- latest ver 16384 (10.7)
+end
+if region == "JPN" then
+	nver = "000400DB00016202" -- latest ver 512 (10.7)
+	friends = "0004013000003202" -- latest ver 10240 (10.7)
+	eshop = "0004001000020900" -- latest ver 21504 (10.7)
+	mint = "000400300000C602" -- latest ver 16384 (10.7)
+end
+
+end
 
 --Checking stuff before doing anything to the console
 systemcheck()
