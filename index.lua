@@ -59,10 +59,10 @@ function systemcheck() --Checks firmware version (major, minor, rev) , system re
 end
 
 function displaysystem() -- Displays system information
-	debugPrint(0,0,"MAKE SURE THIS IS CORRECT!", red, BOTTOM_SCREEN)
-	debugPrint(0,20,"Abort if wrong! (XL doesn't matter)", red, BOTTOM_SCREEN)
-	debugPrint(0,40,"Model:"..modelstring, white, BOTTOM_SCREEN)
-	debugPrint(0,60,"FW:"..major.."."..minor.."."..rev, white, BOTTOM_SCREEN)
+	Screen.debugPrint(0,0,"MAKE SURE THIS IS CORRECT!", red, BOTTOM_SCREEN)
+	Screen.debugPrint(0,20,"Abort if wrong! (XL doesn't matter)", red, BOTTOM_SCREEN)
+	Screen.debugPrint(0,40,"Model:"..modelstring, white, BOTTOM_SCREEN)
+	Screen.debugPrint(0,60,"FW:"..major.."."..minor.."."..rev, white, BOTTOM_SCREEN)
 end
 
 --other functions
@@ -156,7 +156,7 @@ end
 function installcia() --installs the CIA files to NAND (doesn't do anything if rel = 0)
 	checkciaexist = doesciaexist()
 	if checkciaexist == 1 then
-		debugPrint(0,0,"Installing CIA files...", white, TOP_SCREEN)
+		Screen.debugPrint(0,0,"Installing CIA files...", white, TOP_SCREEN)
 		if rel == 1 and installed == 0
 			System.installCIA(updatedir..nver..".cia", NAND)
 			System.installCIA(updatedir..friends..".cia", NAND)
@@ -191,43 +191,43 @@ setcia()
 
 --UI Screens
 function errorscreen() --scr = 0 -- Error screen, displays error code in case of an error
-	debugPrint(0,0,"FrankenUpdater v."..scriptver, white, TOP_SCREEN)
-	debugPrint(0,20,"===============", red, TOP_SCREEN)
-	debugPrint(0,40,"An error has ocurred.", white, TOP_SCREEN)
-	debugPrint(0,60,"Please refer to the documentation.", white, TOP_SCREEN)
-	debugPrint(0,80,"Error code: "..err, red, TOP_SCREEN)
-	debugPrint(0,100,"Press B to quit.", white, TOP_SCREEN)
+	Screen.debugPrint(0,0,"FrankenUpdater v."..scriptver, white, TOP_SCREEN)
+	Screen.debugPrint(0,20,"===============", red, TOP_SCREEN)
+	Screen.debugPrint(0,40,"An error has ocurred.", white, TOP_SCREEN)
+	Screen.debugPrint(0,60,"Please refer to the documentation.", white, TOP_SCREEN)
+	Screen.debugPrint(0,80,"Error code: "..err, red, TOP_SCREEN)
+	Screen.debugPrint(0,100,"Press B to quit.", white, TOP_SCREEN)
 	checkquit()
 end
 
 function disclaimer() --scr = 1 -- Disclaimer, first screen
-	debugPrint(0,0,"DISCLAIMER:", red, TOP_SCREEN)
-	debugPrint(0,40,"It's your console, and your choice!", white, TOP_SCREEN)
-	debugPrint(0,60,"Don't blame me if anything happens!", white, TOP_SCREEN)
-	debugPrint(0,80,"USE THE CORRECT FILES!", red, TOP_SCREEN)
-	debugPrint(0,100,"Press A to install CIAs.", white, TOP_SCREEN)
+	Screen.debugPrint(0,0,"DISCLAIMER:", red, TOP_SCREEN)
+	Screen.debugPrint(0,40,"It's your console, and your choice!", white, TOP_SCREEN)
+	Screen.debugPrint(0,60,"Don't blame me if anything happens!", white, TOP_SCREEN)
+	Screen.debugPrint(0,80,"USE THE CORRECT FILES!", red, TOP_SCREEN)
+	Screen.debugPrint(0,100,"Press A to install CIAs.", white, TOP_SCREEN)
 	waitchange(2)
 	checkquit()
 end
 
 function startinstall() --scr = 2 --Second screen, starts the installation of the CIA files
-	debugPrint(0,0,"FrankenUpdater v."..scriptver.." by gnmmarechal", white, TOP_SCREEN)
-	debugPrint(0,20,"===============", red, TOP_SCREEN)
-	debugPrint(0,40,"Installation started. Please wait..., white, TOP_SCREEN)
-	debugPrint(0,60,"DO NOT TURN THE POWER OFF!!!", red, TOP_SCREEN)
+	Screen.debugPrint(0,0,"FrankenUpdater v."..scriptver.." by gnmmarechal", white, TOP_SCREEN)
+	Screen.debugPrint(0,20,"===============", red, TOP_SCREEN)
+	Screen.debugPrint(0,40,"Installation started. Please wait..., white, TOP_SCREEN)
+	Screen.debugPrint(0,60,"DO NOT TURN THE POWER OFF!!!", red, TOP_SCREEN)
 	installcia()
-	debugPrint(0,80,"Done! Press B to quit!", white, TOP_SCREEN) 
+	Screen.debugPrint(0,80,"Done! Press B to quit!", white, TOP_SCREEN) 
 end
 
 function showciainfo() --scr = 3 --show the information about the CIA files
-	debugPrint(0,0,"FrankenUpdater v."..scriptver.." by gnmmarechal", white, TOP_SCREEN)
-	debugPrint(0,20,"===============", red, TOP_SCREEN)
-	debugPrint(0,40,"CIA Title Info:", white, TOP_SCREEN)
-	debugPrint(0,60,"NVer:"..nver, white, TOP_SCREEN)
-	debugPrint(0,80,"F. Module:"..friends, white, TOP_SCREEN)
-	debugPrint(0,100,"eShop:"..eshop, white, TOP_SCREEN)
-	debugPrint(0,120,"Mint:"..mint, white, TOP_SCREEN)
-	debugPrint(0,140,"Press SELECT to go back", white, TOP_SCREEN)
+	Screen.debugPrint(0,0,"FrankenUpdater v."..scriptver.." by gnmmarechal", white, TOP_SCREEN)
+	Screen.debugPrint(0,20,"===============", red, TOP_SCREEN)
+	Screen.debugPrint(0,40,"CIA Title Info:", white, TOP_SCREEN)
+	Screen.debugPrint(0,60,"NVer:"..nver, white, TOP_SCREEN)
+	Screen.debugPrint(0,80,"F. Module:"..friends, white, TOP_SCREEN)
+	Screen.debugPrint(0,100,"eShop:"..eshop, white, TOP_SCREEN)
+	Screen.debugPrint(0,120,"Mint:"..mint, white, TOP_SCREEN)
+	Screen.debugPrint(0,140,"Press SELECT to go back", white, TOP_SCREEN)
 end
 while true do
 	clear()
