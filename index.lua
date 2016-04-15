@@ -164,6 +164,7 @@ systemcheck()
 setcia()
 
 --UI Screens
+function errorscreen() --scr = 0 -- Error screen, displays error code in case of an error
 function disclaimer() --scr = 1 -- Disclaimer, first screen
 	debugPrint(0,0,"DISCLAIMER:", red, TOP_SCREEN)
 	debugPrint(0,40,"It's your console, and your choice!", white, TOP_SCREEN)
@@ -179,9 +180,13 @@ while true do
 	clear()
 	pad = Controls.read()
 	displaysystem()
-	if scr == 1
-
+	if scr == 0 then
+		errorscreen()
 	end
+	if scr == 1 then
+		disclaimer()
+	end
+	
 	
 	
 	Screen.flip()
