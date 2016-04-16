@@ -17,7 +17,7 @@
 --
 
 --Indicates the version of FrankenUpdater
-scriptver = "0.1"
+scriptver = "0.2"
 
 --These lines set the colours for the text in RGB
 white = Color.new(255,255,255)
@@ -34,6 +34,14 @@ installed = 0 --Sets whether the CIA files have already been installed or not
 --Important functions
 
 rel = 0 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
+
+function setsafemode() --defines whether the system is using SAFE test or not
+	if rel == 0 then
+		setmode = "SAFE"
+	else
+		setmode = "ARMED"	
+	end
+end
 
 function systemcheck() --Checks firmware version (major, minor, rev) , system region (USA, EUR, JPN) and model (0 = OLD, 1 = NEW)
 	major, minor, rev = System.getFirmware() --gets firmware version
@@ -60,9 +68,11 @@ end
 
 function displaysystem() -- Displays system information
 	Screen.debugPrint(0,0,"MAKE SURE THIS IS CORRECT!", red, BOTTOM_SCREEN)
-	Screen.debugPrint(0,20,"Abort if wrong! (XL doesn't matter)", red, BOTTOM_SCREEN)
+	Screen.debugPrint(0,20,"Abort if wrong! (XL is irrelevant)", red, BOTTOM_SCREEN)
 	Screen.debugPrint(0,40,"Model:"..modelstring, white, BOTTOM_SCREEN)
 	Screen.debugPrint(0,60,"FW:"..major.."."..minor.."."..rev, white, BOTTOM_SCREEN)
+	Screen.debugPrint(0,80,"SCRIPT:"..scriptver, white, BOTTOM_SCREEN)
+	Screen.debugPrint(0,100,"SAFE:"..setmode, white, BOTTOM_SCREEN)
 end
 
 --other functions
@@ -188,6 +198,7 @@ oldpad = Controls.read()
 --Checking stuff before doing anything to the console
 systemcheck()
 setcia()
+setsafemode()
 
 --UI Screens
 function errorscreen() --scr = 0 -- Error screen, displays error code in case of an error
