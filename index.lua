@@ -33,7 +33,7 @@ installed = 0 --Sets whether the CIA files have already been installed or not
 
 --Important functions
 
-rel = 0 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
+rel = 1 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
 
 function setsafemode() --defines whether the system is using SAFE test or not
 	if rel == 0 then
