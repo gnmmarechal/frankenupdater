@@ -11,9 +11,10 @@ Usage:
 
 2)Download the correct CIA files for your region/console. The IDs and Version numbers are:
 
-Old3DS/2DS:
+##Old3DS/2DS:
 
-USA
+###USA
+
 nver = "000400DB00016302" -- latest ver 512 (10.7)
 
 friends = "0004013000003202" -- latest ver 10240 (10.7)
@@ -23,7 +24,7 @@ eshop = "0004001000021900" -- latest ver 21506 (10.7)
 mint = "000400300000CE02" -- latest ver 16384 (10.7)
 
 
-EUR
+###EUR
 
 nver = "000400DB00016102" -- latest ver 512 (10.7)
 
