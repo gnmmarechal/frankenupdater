@@ -5,7 +5,11 @@ Runs on LPP-3DS with svchax (FW 10.7 or lower).
 
 This script updates the CIAs for friends system-module, NVer, eShop and Mint.
 
-Usage:
+##Testing:
+
+This needs testers to make sure it actually works. You can't be on latest firmware, as that would render this useless. Make sure all CIAs have been successfully updated and report back. 
+
+##Usage:
 
 1)Download the script and the binary of LPP-3DS w/svchax(frankenupdater.3dsx) and install them as you would with any other app on the 3DS.
 
