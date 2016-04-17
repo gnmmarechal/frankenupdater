@@ -47,4 +47,3 @@ New3DS:
 		friends = "0004013000003202" --latest ver 10240 (10.7)
 		eshop = "0004001000020900" --latest ver 21504 (10.7)
 		mint = "000400300000C602" --latest ver 16384 (10.7)
-
