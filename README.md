@@ -67,7 +67,9 @@ eshop = "0004001000022900" --latest ver 21505 (10.7)
 
 mint = "000400300000D602" --latest ver 16384 (10.7)
 
+
 JPN
+
 nver = "000400DB20016202" --latest ver 512 (10.7)
 
 friends = "0004013000003202" --latest ver 10240 (10.7)
