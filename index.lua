@@ -33,7 +33,7 @@ installed = 0 --Sets whether the CIA files have already been installed or not
 
 --Important functions
 
-rel = 1 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
+rel = 0 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
 
 function setsafemode() --defines whether the system is using SAFE test or not
 	if rel == 0 then
@@ -186,7 +186,7 @@ function optnrtrn() --Waits for SELECT then toggles between SCR 1 and SCR 3
 		if scr==1 then
 			scr=3
 		else
-			if scr==3
+			if scr==3 then
 				scr=1
 			end
 		end
