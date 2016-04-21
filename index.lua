@@ -56,7 +56,7 @@ function systemcheck() --Checks firmware version (major, minor, rev) , system re
 		end	
 	end
 	modeln = System.getModel() --gets model number
-	if modeln == 0 or model == 1 or model == 3 then --If the system is a 2DS, 3DS or 3DS XL, defines the model as '0' and the correct string.
+	if modeln == 0 or n == 1 or modeln == 3 then --If the system is a 2DS, 3DS or 3DS XL, defines the model as '0' and the correct string.
 		model = 0
 		modelstring = "Old 3DS/2DS"
 	else --If the system is not an old3DS system, defines it as '1', aka New 3DS/New 3DS XL
@@ -224,7 +224,7 @@ end
 function startinstall() --scr = 2 --Second screen, starts the installation of the CIA files
 	Screen.debugPrint(0,0,"FrankenUpdater v."..scriptver.." by gnmmarechal", white, TOP_SCREEN)
 	Screen.debugPrint(0,20,"===============", red, TOP_SCREEN)
-	Screen.debugPrint(0,40,"Installation started. Please wait..."", white, TOP_SCREEN)
+	Screen.debugPrint(0,40,"Installation started. Please wait...", white, TOP_SCREEN)
 	Screen.debugPrint(0,60,"DO NOT TURN THE POWER OFF!!!", red, TOP_SCREEN)
 	installcia()
 	Screen.debugPrint(0,80,"Done! Press B to quit!", white, TOP_SCREEN) 
