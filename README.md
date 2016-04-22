@@ -1,6 +1,4 @@
-#Official releases will never happen
-Thanks for the negative support, /r/3dshacks. You only care about the daily updates of whatever is the "hot stuff" right now and downvote whoever tries to publish a tool to help people who use frankenfirmwares. As such, I'm terminating this project.
-I *might* update the repository once in a while - for my own use and to keep the code in my PCs in sync.
+#Official releases will not be published on GBATemp or /r/3dshacks. If you want them, head over to rinnegatamante.it
 
 Cya.
 
