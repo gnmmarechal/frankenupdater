@@ -17,7 +17,7 @@
 --
 
 --Indicates the version of FrankenUpdater
-scriptver = "0.2"
+scriptver = "1.0.1"
 
 --These lines set the colours for the text in RGB
 white = Color.new(255,255,255)
