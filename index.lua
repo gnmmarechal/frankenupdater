@@ -97,21 +97,45 @@ end
 function oldregionsetcia() --checks if the correct CIAs are available on the SD Card. As of now, it doesn't check for file corruption
 	if region == "USA" then
 		nver = "000400DB00016302" -- latest ver 512 (10.7)
+		nverto = 0x000400DB
+		nverts = 0x00016302
 		friends = "0004013000003202" -- latest ver 10240 (10.7)
+		friendso = 0x00040130
+		friendss = 0x00003202
 		eshop = "0004001000021900" -- latest ver 21506 (10.7)
+		eshopo = 0x00040010
+		eshops = 0x00021900
 		mint = "000400300000CE02" -- latest ver 16384 (10.7)
+		minto = 0x00040030
+		mints = 0x0000CE02
 	end
 	if region == "EUR" then
 		nver = "000400DB00016102" -- latest ver 512 (10.7)
+		nvero = 0x000400DB
+		nvers = 0x00016102
 		friends = "0004013000003202" -- latest ver 10240 (10.7)
+		friendso = 0x00040130
+		friendss = 0x00003202
 		eshop = "0004001000022900" -- latest ver 21505 (10.7)
+		eshopo = 0x00040010
+		eshops = 0x00022900
 		mint = "000400300000D602" -- latest ver 16384 (10.7)
+		minto = 0x00040030
+		mints = 0x0000D602
 	end
 	if region == "JPN" then
 		nver = "000400DB00016202" -- latest ver 512 (10.7)
+		nvero = 0x000400DB
+		nvers = 0x00016202
 		friends = "0004013000003202" -- latest ver 10240 (10.7)
+		friendso = 0x00040130
+		friendss = 0x00003202
 		eshop = "0004001000020900" -- latest ver 21504 (10.7)
+		eshopo = 0x00040010
+		eshops = 0x00020900
 		mint = "000400300000C602" -- latest ver 16384 (10.7)
+		minto = 0x00040030
+		mints = 0x0000C602
 	end
 
 end
@@ -119,15 +143,31 @@ end
 function newregionsetcia() -- Same as oldregionsetcia(), for the new3DS
 	if region == "USA" then
 		nver = "000400DB20016302" --latest ver 512 (10.7)
+		nvero = 0x000400DB
+		nvers = 0x20016302
 		friends = "0004013000003202" --latest ver 10240 (10.7)
+		friendso = 0x00040130
+		friendss = 0x00003202
 		eshop = "0004001000021900" --latest ver 21506 (10.7)
+		eshopo = 0x00040010
+		eshops = 0x00021900
 		mint = "000400300000CE02" --latest ver 16384 (10.7)
+		minto = 0x00040030
+		mints = 0x0000CE02
 	end
 	if region == "EUR" then
 		nver = "000400DB20016102" --latest ver 512 (10.7)
+		nvero = 0x000400DB
+		nvers = 0x20016102
 		friends = "0004013000003202" --latest ver 10240 (10.7)
+		friendso = 0x00040130
+		friendss = 0x00003202
 		eshop = "0004001000022900" --latest ver 21505 (10.7)
+		eshopo = 0x00040010
+		eshops = 0x00022900
 		mint = "000400300000D602" --latest ver 16384 (10.7)
+		minto = 0x00040030
+		mints = 0x0000D602
 	end
 	if region == "JPN" then
 		nver = "000400DB20016202" --latest ver 512 (10.7)
@@ -168,9 +208,13 @@ function installcia() --installs the CIA files to NAND (doesn't do anything if r
 	if checkciaexist == 1 then
 		Screen.debugPrint(0,80,"Installing CIA files...", white, TOP_SCREEN)
 		if rel == 1 and installed == 0 then
+			deletecia(nvero,nvers)
 			System.installCIA(updatedir..nver..".cia", NAND)
+			deletecia(friendso,friendss)
 			System.installCIA(updatedir..friends..".cia", NAND)
+			deletecia(eshopo,eshops)
 			System.installCIA(updatedir..eshop..".cia", NAND)
+			deletecia(minto,mints)
 			System.installCIA(updatedir..mint..".cia", NAND)
 			installed = 1
 		end
@@ -179,6 +223,28 @@ function installcia() --installs the CIA files to NAND (doesn't do anything if r
 		err = 0 --Error 0 is missing files
 		scr = 0 -- error screen
 	end
+end
+
+function deletecia(ciao,cias) --featuring copypasta ty Rinnegatamante
+	title_id = Core.alloc(0x08)
+	Core.storeWord(title_id, ciao)
+	Core.storeWord(title_id + 0x04, ciaf)
+
+	-- Initializing AM service
+	Core.execCall("amInit")
+	if not ret == 0 then
+		error("amInit returned an error: 0x" .. string.format("%X",ret))
+	end
+
+	-- Launching both Delete calls just to be sure
+	Core.execCall("AM_DeleteTitle", 0x00, title_id)
+	Core.execCall("AM_DeleteAppTitle", 0x00, title_id)
+
+	-- Closing AM service
+	Core.execCall("amExit")
+
+	-- Freeing memory and exiting
+	Core.free(title_id)
 end
 
 function optnrtrn() --Waits for SELECT then toggles between SCR 1 and SCR 3
