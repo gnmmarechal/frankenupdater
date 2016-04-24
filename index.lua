@@ -33,7 +33,7 @@ installed = 0 --Sets whether the CIA files have already been installed or not
 
 --Important functions
 
-rel = 0 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
+rel = 1 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
 
 function setsafemode() --defines whether the system is using SAFE test or not
 	if rel == 0 then
@@ -171,9 +171,17 @@ function newregionsetcia() -- Same as oldregionsetcia(), for the new3DS
 	end
 	if region == "JPN" then
 		nver = "000400DB20016202" --latest ver 512 (10.7)
+		nvero = 0x000400DB
+		nvers = 0x20016202
 		friends = "0004013000003202" --latest ver 10240 (10.7)
+		friendso = 0x00040130
+		friendss = 0x00003202
 		eshop = "0004001000020900" --latest ver 21504 (10.7)
+		eshopo = 0x00040010
+		eshops = 0x00020900
 		mint = "000400300000C602" --latest ver 16384 (10.7)
+		minto = 0x00040030
+		mints = 0x0000C602
 	end
 end
 
