@@ -1,4 +1,4 @@
-#Please, only open issues if you want to help. Opening an issue to say  "using a frankenfirmware is stupid" is stupid and pointless.
+#Please, only open issues if you want to help. Opening an issue to say  "using a frankenfirmware is stupid" is stupid and pointless. This is an option like any other, and it is not "stupid" under certain circumstances.
 
 Cya.
 
