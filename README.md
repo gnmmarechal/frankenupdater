@@ -1,4 +1,4 @@
-#Official releases will not be published on GBATemp or /r/3dshacks. If you want them, head over to rinnegatamante.it
+#Please, only open issues if you want to help. Opening an issue to say  "using a frankenfirmware is stupid" is stupid and pointless.
 
 Cya.
 
