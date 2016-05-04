@@ -30,6 +30,7 @@ root = System.currentDirectory() --Defines the directory "root" as the root of t
 updatedir = root.."cia/" --Defines the directory containing the CIA update files
 scr = 1 --Defines the starting screen
 installed = 0 --Sets whether the CIA files have already been installed or not
+--cia_table = System.listCIA()
 
 --Important functions
 
@@ -70,9 +71,10 @@ function displaysystem() -- Displays system information
 	Screen.debugPrint(0,0,"MAKE SURE THIS IS CORRECT!", red, BOTTOM_SCREEN)
 	Screen.debugPrint(0,20,"Abort if wrong! (XL is irrelevant)", red, BOTTOM_SCREEN)
 	Screen.debugPrint(0,40,"Model:"..modelstring, white, BOTTOM_SCREEN)
-	Screen.debugPrint(0,60,"NATIVE_FIRM:"..major.."."..minor.."-"..rev, white, BOTTOM_SCREEN)
-	Screen.debugPrint(0,80,"SCRIPT:"..scriptver, white, BOTTOM_SCREEN)
-	Screen.debugPrint(0,100,"SAFE:"..setmode, white, BOTTOM_SCREEN)
+	Screen.debugPrint(0,60,"Region:"..region, white, BOTTOM_SCREEN)
+	Screen.debugPrint(0,80,"NATIVE_FIRM:"..major.."."..minor.."-"..rev, white, BOTTOM_SCREEN)
+	Screen.debugPrint(0,100,"SCRIPT:"..scriptver, white, BOTTOM_SCREEN)
+	Screen.debugPrint(0,120,"SAFE:"..setmode, white, BOTTOM_SCREEN)
 end
 
 --other functions
