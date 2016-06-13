@@ -34,7 +34,7 @@ installed = 0 --Sets whether the CIA files have already been installed or not
 
 --Important functions
 
-rel = 1 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
+rel = 0 --1 means it will install the CIAs, 0 is merely a test for the interface itself, it won't change any files.
 
 function setsafemode() --defines whether the system is using SAFE test or not
 	if rel == 0 then
@@ -46,6 +46,10 @@ end
 
 function systemcheck() --Checks firmware version (major, minor, rev) , system region (USA, EUR, JPN) and model (0 = OLD, 1 = NEW)
 	major, minor, rev = System.getFirmware() --gets firmware version
+	regioncheck()
+	modelcheck()
+end
+function regioncheck()
 	regint = System.getRegion() --gets region number
 	if regint == 1 then --checks if the region is 1 (US)
 		region = "USA" --Sets region string as USA
@@ -56,6 +60,8 @@ function systemcheck() --Checks firmware version (major, minor, rev) , system re
 			region = "JPN" --If it's not EUR or US, defines it as JPN --- This includes any console that isn't EUR/US, could go wrong with KOR/whatever that isn't EUR/US/JPN!
 		end	
 	end
+end
+function modelcheck()
 	modeln = System.getModel() --gets model number
 	if modeln == 0 or n == 1 or modeln == 3 then --If the system is a 2DS, 3DS or 3DS XL, defines the model as '0' and the correct string.
 		model = 0
@@ -64,7 +70,29 @@ function systemcheck() --Checks firmware version (major, minor, rev) , system re
 		model = 1
 		modelstring = "New 3DS" 
 	end
-		
+end
+function newregioncheck() --This might work
+	cialist = System.listCIA()
+	for k, v in pairs(cialist) do
+		if v.uniqueid == 0x00017302 then
+			region = "USA"
+		end
+		if v.uniqueid == 0x00017102 then
+			region = "EUR"
+		end
+		if v.uniqueid == 0x00017202 then
+			region = "JPN"
+		end
+		if v.uniqueid == 0x00017402 then
+			region = "CHN"
+		end
+		if v.uniqueid == 0x00017502 then
+			region = "KOR"
+		end
+		if v.uniqueid == 0x00017602 then
+			region = "TWN"
+		end
+	end
 end
 
 function displaysystem() -- Displays system information
