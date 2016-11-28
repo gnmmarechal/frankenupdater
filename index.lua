@@ -16,8 +16,10 @@
 -- *Rinnegatamante - Creator of Lua Player Plus 3DS
 --
 
+-- THIS TOOL IS NOT SAFE. DO NOT USE IT. IT HAS NOT BEEN TESTED.
+
 --Indicates the version of FrankenUpdater
-scriptver = "1.0.1"
+scriptver = "1.0.2"
 
 --These lines set the colours for the text in RGB
 white = Color.new(255,255,255)
